@@ -39,16 +39,32 @@ Développé avec l'algorithme Luhn modifié, ce package offre une validation ult
 Le NIN algérien est composé de 18 chiffres structurés comme suit :
 
 ```
-1 0 123 4567 89012 34 56
-│ │  │    │     │   │  │
-│ │  │    │     │   │  └─ Clé de contrôle (2 chiffres)
-│ │  │    │     │   └──── Numéro d'enregistrement (2 chiffres)  
-│ │  │    │     └──────── Numéro d'acte de naissance (5 chiffres)
-│ │  │    └────────────── Code commune/pays de naissance (4 chiffres)
-│ │  └─────────────────── Année de naissance (3 chiffres)
+1 0 004 4567 89012 34 56
+│ │  │   │     │   │  │
+│ │  │   │     │   │  └─ Clé de contrôle (2 chiffres)
+│ │  │   │     │   └──── Numéro d'enregistrement (2 chiffres)  
+│ │  │   │     └──────── Numéro d'acte de naissance (5 chiffres)
+│ │  │   └────────────── Code commune/pays de naissance (4 chiffres)
+│ │  └─────────────────── Année de registre de naissance (3 chiffres)
 │ └────────────────────── Sexe (0=Homme, 1=Femme)
-└──────────────────────── Nationalité (1=Algérienne, 2=Double nationalité)
+└──────────────────────── Nationalité (1=Nationalité algérienne, 2=Double nationalité)
 ```
+
+**🔍 Interprétation de l'année :**
+- **Premier chiffre = 0** : Ajouter 2000 (ex: 004 → 2004, 023 → 2023)
+- **Premier chiffre = 9** : Ajouter 1000 (ex: 983 → 1983, 995 → 1995)
+
+**👤 Nationalité :**
+- **Code 1** : "Nationalité algérienne" (pour homme et femme)
+- **Code 2** : "Double nationalité"
+
+### 📊 **Exemples Concrets**
+
+| NIN | Description | Nationalité | Sexe | Année |
+|-----|-------------|-------------|------|-------|
+| `1000400000000000XX` | Homme algérien né en 2004 | Nationalité algérienne | Homme | 2004 |
+| `1199500000000000XX` | Femme algérienne née en 1995 | Nationalité algérienne | Femme | 1995 |
+| `2098300000000000XX` | Double nationalité né en 1983 | Double nationalité | Homme | 1983 |
 
 ## 🎮 **Essayez Maintenant ! Interface Interactive**
 
@@ -112,7 +128,7 @@ import { validateNIN } from 'dz-nin-checker';
 const result = validateNIN('your-nin-here');
 
 console.log(result.isValid); // true/false
-console.log(result.nationality); // 'Algérienne' | 'Double nationalité' | 'Inconnu'
+console.log(result.nationality); // 'Nationalité algérienne' | 'Double nationalité' | 'Inconnu'
 console.log(result.sex); // 'Homme' | 'Femme' | 'Inconnu'
 console.log(result.year); // Année de naissance
 ```
@@ -124,7 +140,7 @@ import { validateNINWithMessage } from 'dz-nin-checker';
 
 const result = validateNINWithMessage('your-nin-here');
 console.log(result.message); 
-// "✅ NIN valide - Algérienne Homme né(e) en 123"
+// "✅ NIN valide - Nationalité algérienne Homme né en 2004"
 // ou "❌ Clé de contrôle invalide. Attendue: 47, Fournie: 02"
 ```
 
@@ -148,8 +164,9 @@ results.forEach((result, index) => {
 import { generateValidNIN } from 'dz-nin-checker';
 
 // Génère un NIN valide à partir des 16 premiers chiffres
-const validNIN = generateValidNIN('1000000000000000');
-console.log(validNIN); // "1000000000000000XX" (XX = clé calculée)
+const validNIN = generateValidNIN('1000400000000000');
+console.log(validNIN); // "1000400000000000XX" (XX = clé calculée)
+// Homme, nationalité algérienne, né en 2004
 ```
 
 ### Mode debug
@@ -177,9 +194,9 @@ Valide un NIN et retourne les détails complets.
 ```typescript
 interface NINDetails {
   raw: string;                    // NIN nettoyé
-  nationality: string;            // Nationalité décodée
-  sex: string;                    // Sexe décodé
-  year: string;                   // Année de naissance
+  nationality: string;            // "Nationalité algérienne" | "Double nationalité" | "Inconnu"
+  sex: string;                    // "Homme" | "Femme" | "Inconnu"
+  year: string;                   // Année complète (ex: "2004", "1983")
   communeOrCountry: string;       // Code commune/pays
   birthAct: string;               // Numéro d'acte de naissance
   registerNumber: string;         // Numéro d'enregistrement
@@ -270,13 +287,13 @@ npm run test:coverage
 
 **Exemple de validation :**
 ```
-📝 NIN saisi: 100000000000000008
-✨ Statut: ✅ NIN valide - Algérienne Homme né(e) en 000
+📝 NIN saisi: 100040000000000008
+✨ Statut: ✅ NIN valide - Nationalité algérienne Homme né(e) en 2004
 
 📊 Détails:
-   👤 Nationalité: Algérienne
+   👤 Nationalité: Nationalité algérienne
    ⚥  Sexe: Homme
-   📅 Année: 000
+   📅 Année: 2004
    🏘️  Commune/Pays: 0000
    📄 Acte de naissance: 00000
    🔢 N° d'enregistrement: 00
@@ -309,7 +326,7 @@ function checkNIN(nin: string) {
     const result = validateNIN(nin);
     
     if (result.isValid) {
-      console.log(`✅ NIN valide pour ${result.nationality} ${result.sex}`);
+      console.log(`✅ NIN valide pour ${result.nationality} ${result.sex} né(e) en ${result.year}`);
       return { success: true, data: result };
     } else {
       console.log(`❌ NIN invalide: ${result.error}`);

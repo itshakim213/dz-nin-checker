@@ -1,6 +1,6 @@
 export interface NINDetails {
   raw: string;
-  nationality: "Algérienne" | "Double nationalité" | "Inconnu";
+  nationality: "Nationalité algérienne" | "Double nationalité" | "Inconnu";
   sex: "Homme" | "Femme" | "Inconnu";
   year: string;
   communeOrCountry: string;
@@ -53,12 +53,31 @@ function computeControlKey(ninWithoutKey: string): string {
 }
 
 /**
+ * Calcule l'année complète à partir des 3 chiffres du registre de naissance.
+ * 
+ * @param yearCode - Les 3 chiffres du registre de naissance (positions 3-5)
+ * @returns L'année complète (ex: "004" -> "2004", "983" -> "1983")
+ */
+function calculateFullYear(yearCode: string): string {
+  const yearNum = parseInt(yearCode, 10);
+  
+  // Si le premier chiffre est 0, on ajoute 2000 (ex: 004 -> 2004, 023 -> 2023)
+  // Si le premier chiffre est 9, on ajoute 1000 (ex: 983 -> 1983, 995 -> 1995)
+  const firstDigit = yearCode.charAt(0);
+  const fullYear = firstDigit === '0' ? 2000 + yearNum : 1000 + yearNum;
+  
+  return fullYear.toString();
+}
+
+/**
  * Valide un Numéro d'Identification National (NIN) algérien.
  * 
  * Format du NIN algérien (18 chiffres) :
  * - Position 1 : Nationalité (1=Algérienne, 2=Double nationalité)
  * - Position 2 : Sexe (0=Homme, 1=Femme)
  * - Positions 3-5 : Année de registre du naissance (sur 3 chiffres)
+ *   * Si premier chiffre = 0 : ajouter 2000 (ex: 004 -> 2004)
+ *   * Si premier chiffre = 9 : ajouter 1000 (ex: 983 -> 1983)
  * - Positions 6-9 : Code commune (ou pays) de naissance
  * - Positions 10-14 : Numéro d'acte de naissance
  * - Positions 15-16 : Numéro d'enregistrement
@@ -90,23 +109,25 @@ export function validateNIN(nin: string): NINDetails {
   // Extraction des composants
   const nationalityCode = cleaned.substring(0, 1);
   const sexCode = cleaned.substring(1, 2);
-  const year = cleaned.substring(2, 5);
+  const yearCode = cleaned.substring(2, 5);
+  const year = calculateFullYear(yearCode);
   const communeOrCountry = cleaned.substring(5, 9);
   const birthAct = cleaned.substring(9, 14);
   const registerNumber = cleaned.substring(14, 16);
   const controlKey = cleaned.substring(16, 18);
 
   // Interprétation des codes
-  const nationality = nationalityCode === "1" 
-    ? "Algérienne" 
-    : nationalityCode === "2" 
-    ? "Double nationalité" 
-    : "Inconnu";
-
   const sex = sexCode === "0" 
     ? "Homme" 
     : sexCode === "1" 
     ? "Femme" 
+    : "Inconnu";
+
+  // Déterminer la nationalité
+  const nationality = nationalityCode === "1" 
+    ? "Nationalité algérienne" 
+    : nationalityCode === "2" 
+    ? "Double nationalité" 
     : "Inconnu";
 
   // Validation de la clé de contrôle
@@ -204,7 +225,7 @@ export function debugNIN(nin: string) {
     components: {
       nationality: `${details.nationality} (${cleaned.substring(0, 1)})`,
       sex: `${details.sex} (${cleaned.substring(1, 2)})`,
-      year: `${details.year}`,
+      year: `${details.year} (${cleaned.substring(2, 5)} -> ${details.year})`,
       communeOrCountry: `${details.communeOrCountry}`,
       birthAct: `${details.birthAct}`,
       registerNumber: `${details.registerNumber}`

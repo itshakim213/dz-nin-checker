@@ -251,19 +251,19 @@ function runDemoTests(): void {
   
   const testCases = [
     {
-      name: '✅ NIN valide - Homme algérien',
-      nin: generateValidNIN('1000000000000000'),
-      description: 'NIN généré pour un homme algérien'
+      name: '✅ NIN valide - Homme algérien (né en 2004)',
+      nin: generateValidNIN('1000400000000000'),
+      description: 'NIN généré pour un homme algérien né en 2004'
     },
     {
-      name: '✅ NIN valide - Femme algérienne',
-      nin: generateValidNIN('1100000000000001'),
-      description: 'NIN généré pour une femme algérienne'
+      name: '✅ NIN valide - Femme algérienne (née en 1995)',
+      nin: generateValidNIN('1199500000000001'),
+      description: 'NIN généré pour une femme algérienne née en 1995'
     },
     {
-      name: '✅ NIN valide - Double nationalité',
-      nin: generateValidNIN('2050000000000000'),
-      description: 'NIN généré pour double nationalité'
+      name: '✅ NIN valide - Double nationalité (né en 1983)',
+      nin: generateValidNIN('2098300000000000'),
+      description: 'NIN généré pour double nationalité né en 1983'
     },
     {
       name: '❌ NIN invalide - Clé incorrecte',

@@ -16,9 +16,9 @@ describe('DZ NIN Checker - Tests Unitaires (Mocha)', () => {
       const result = validateNIN(testNIN);
       
       expect(result.isValid).to.be.true;
-      expect(result.nationality).to.equal('Algérienne');
+      expect(result.nationality).to.equal('Nationalité algérienne');
       expect(result.sex).to.equal('Homme');
-      expect(result.year).to.equal('000');
+      expect(result.year).to.equal('2000');
       expect(result.controlKey).to.equal(result.calculatedKey);
       expect(result.error).to.be.undefined;
     });
@@ -28,8 +28,9 @@ describe('DZ NIN Checker - Tests Unitaires (Mocha)', () => {
       const result = validateNIN(validFemaleNIN);
       
       expect(result.isValid).to.be.true;
-      expect(result.nationality).to.equal('Algérienne');
+      expect(result.nationality).to.equal('Nationalité algérienne');
       expect(result.sex).to.equal('Femme');
+      expect(result.year).to.equal('2000');
     });
 
     it('doit valider un NIN de double nationalité', () => {
@@ -39,6 +40,7 @@ describe('DZ NIN Checker - Tests Unitaires (Mocha)', () => {
       expect(result.isValid).to.be.true;
       expect(result.nationality).to.equal('Double nationalité');
       expect(result.sex).to.equal('Homme');
+      expect(result.year).to.equal('2000');
     });
 
     it('doit rejeter un NIN avec une clé de contrôle incorrecte', () => {
@@ -105,6 +107,40 @@ describe('DZ NIN Checker - Tests Unitaires (Mocha)', () => {
       expect(result.sex).to.equal('Inconnu');
       expect(result.isValid).to.be.true; // Valide structurellement
     });
+
+    it('doit calculer correctement l\'année pour les années 2000+ (premier chiffre 0)', () => {
+      // Test pour 2004 (004 -> 2004) - positions 3-4-5
+      const nin2004 = generateValidNIN('1000400000000000');
+      const result2004 = validateNIN(nin2004);
+      expect(result2004.year).to.equal('2004');
+
+      // Test pour 2023 (023 -> 2023) - positions 3-4-5
+      const nin2023 = generateValidNIN('1002300000000000');
+      const result2023 = validateNIN(nin2023);
+      expect(result2023.year).to.equal('2023');
+
+      // Test pour 2000 (000 -> 2000)
+      const nin2000 = generateValidNIN('1000000000000000');
+      const result2000 = validateNIN(nin2000);
+      expect(result2000.year).to.equal('2000');
+    });
+
+    it('doit calculer correctement l\'année pour les années 1900+ (premier chiffre 9)', () => {
+      // Test pour 1983 (983 -> 1983) - positions 3-4-5
+      const nin1983 = generateValidNIN('1098300000000000');
+      const result1983 = validateNIN(nin1983);
+      expect(result1983.year).to.equal('1983');
+
+      // Test pour 1999 (999 -> 1999) - positions 3-4-5
+      const nin1999 = generateValidNIN('1099900000000000');
+      const result1999 = validateNIN(nin1999);
+      expect(result1999.year).to.equal('1999');
+
+      // Test pour 1995 (995 -> 1995) - positions 3-4-5
+      const nin1995 = generateValidNIN('1099500000000000');
+      const result1995 = validateNIN(nin1995);
+      expect(result1995.year).to.equal('1995');
+    });
   });
 
   describe('validateNINWithMessage', () => {
@@ -114,8 +150,9 @@ describe('DZ NIN Checker - Tests Unitaires (Mocha)', () => {
       
       expect(result.isValid).to.be.true;
       expect(result.message).to.include('✅ NIN valide');
-      expect(result.message).to.include('Algérienne');
+      expect(result.message).to.include('Nationalité algérienne');
       expect(result.message).to.include('Homme');
+      expect(result.message).to.include('2000');
     });
 
     it('doit retourner un message d\'erreur pour un NIN invalide', () => {

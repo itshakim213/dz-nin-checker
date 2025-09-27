@@ -5,6 +5,26 @@ Toutes les modifications notables de ce projet seront documentées dans ce fichi
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère à [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2025-01-27
+
+### 🔧 Améliorations
+- **📅 Logique d'année corrigée** : 
+  - Premier chiffre = 0 → Ajouter 2000 (ex: 004 → 2004)
+  - Premier chiffre = 9 → Ajouter 1000 (ex: 983 → 1983)
+- **👤 Nationalité simplifiée** :
+  - "Nationalité algérienne" (unifié pour homme et femme)
+  - "Double nationalité" (invariant)
+- **🎯 Format NIN corrigé** : Année aux positions 3-4-5 (positions correctes)
+- **🧪 Tests mis à jour** : Tous les tests reflètent les nouvelles logiques
+- **📚 Documentation mise à jour** : README avec exemples concrets et logiques claires
+
+### 🐛 Corrections
+- **🔍 Interprétation d'année** : Logique basée sur le premier chiffre au lieu d'un seuil arbitraire
+- **👥 Genre de nationalité** : Formulation cohérente et professionnelle
+- **📊 Exemples réalistes** : NINs avec années 2004, 1995, 1983 au lieu de valeurs génériques
+
+---
+
 ## [1.0.0] - 2025-01-27
 
 ### 🎉 Ajouté
