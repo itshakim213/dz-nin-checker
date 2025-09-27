@@ -177,8 +177,8 @@ Si vous modifiez :
 
 ## ❓ Questions ?
 
-- 🐛 **Bugs** : [GitHub Issues](https://github.com/hakim/dz-nin-checker/issues)
-- 💬 **Discussions** : [GitHub Discussions](https://github.com/hakim/dz-nin-checker/discussions)
+- 🐛 **Bugs** : [GitHub Issues](https://github.com/itshakim213/dz-nin-checker/issues)
+- 💬 **Discussions** : [GitHub Discussions](https://github.com/itshakim213/dz-nin-checker/discussions)
 - 📧 **Email** : ikhlefsidali@icloud.com
 
 ## 🙏 Merci !

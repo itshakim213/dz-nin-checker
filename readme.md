@@ -41,10 +41,10 @@ Le NIN algérien est composé de 18 chiffres structurés comme suit :
 ```
 1 0 004 4567 89012 34 56
 │ │  │   │     │   │  │
-│ │  │   │     │   │  └─ Clé de contrôle (2 chiffres)
-│ │  │   │     │   └──── Numéro d'enregistrement (2 chiffres)  
-│ │  │   │     └──────── Numéro d'acte de naissance (5 chiffres)
-│ │  │   └────────────── Code commune/pays de naissance (4 chiffres)
+│ │  │   │     │   │  └── Clé de contrôle (2 chiffres)
+│ │  │   │     │   └───── Numéro d'enregistrement (2 chiffres)  
+│ │  │   │     └───────── Numéro d'acte de naissance (5 chiffres)
+│ │  │   └─────────────── Code commune/pays de naissance (4 chiffres)
 │ │  └─────────────────── Année de registre de naissance (3 chiffres)
 │ └────────────────────── Sexe (0=Homme, 1=Femme)
 └──────────────────────── Nationalité (1=Nationalité algérienne, 2=Double nationalité)
@@ -72,7 +72,7 @@ Le NIN algérien est composé de 18 chiffres structurés comme suit :
 
 ```bash
 # Clonez et testez immédiatement
-git clone https://github.com/hakim/dz-nin-checker.git
+git clone https://github.com/itshakim213/dz-nin-checker.git
 cd dz-nin-checker
 npm install
 npm run test:interactive
@@ -379,7 +379,7 @@ Le validateur utilise l'**algorithme Luhn** :
 
 ### Setup
 ```bash
-git clone https://github.com/hakim/dz-nin-checker.git
+git clone https://github.com/itshakim213/dz-nin-checker.git
 cd dz-nin-checker
 npm install
 ```
@@ -428,10 +428,10 @@ Ce projet est sous licence MIT - voir le fichier [LICENSE](LICENSE) pour plus de
 
 ## 📞 Support
 
-- 🐛 **Issues**: [GitHub Issues](https://github.com/hakim/dz-nin-checker/issues)
+- 🐛 **Issues**: [GitHub Issues](https://github.com/itshakim213/dz-nin-checker/issues)
 - 📧 **Email**: ikhlefsidali@icloud.com
 - 💼 **LinkedIn**: [Sid Ali Ikhlef](https://www.linkedin.com/in/sid-ali-ikhlef99)
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/hakim/dz-nin-checker/discussions)
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/itshakim213/dz-nin-checker/discussions)
 
 ---
 
