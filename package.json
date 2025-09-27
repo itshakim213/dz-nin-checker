@@ -1,6 +1,6 @@
 {
   "name": "dz-nin-checker",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Validateur de Numéro d'Identification National (NIN) algérien avec algorithme Luhn modifié",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
