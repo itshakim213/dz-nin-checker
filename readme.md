@@ -1,8 +1,10 @@
 # 🇩🇿 DZ NIN Checker
 
-[![npm version](https://badge.fury.io/js/dz-nin-checker.svg)](https://badge.fury.io/js/dz-nin-checker)
+[![npm version](https://badge.fury.io/js/dz-nin-checker.svg)](https://www.npmjs.com/package/dz-nin-checker)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
+
+📦 **Available on npm**: [dz-nin-checker](https://www.npmjs.com/package/dz-nin-checker)
 
 **Le validateur le plus complet et précis pour les Numéros d'Identification Nationale (NIN) algériens !** 
 
