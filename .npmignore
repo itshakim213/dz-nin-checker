@@ -1,0 +1,54 @@
+# Source files (only include compiled JS)
+src/
+*.ts
+!*.d.ts
+
+# Test files
+**/*.test.ts
+**/*.test.js
+**/test-*.ts
+**/test-*.js
+coverage/
+.nyc_output/
+
+# Development files
+.gitignore
+.npmignore
+tsconfig.json
+.eslintrc*
+.prettierrc*
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Environment files
+.env*
+
+# Documentation (keep README.md)
+docs/
+*.md
+!README.md
+
+# Build tools
+webpack.config.js
+rollup.config.js
+babel.config.js
+
+# CI/CD
+.github/
+.travis.yml
+.circleci/
+azure-pipelines.yml
+
+# Examples (optional - you might want to include these)
+examples/
+demo/
