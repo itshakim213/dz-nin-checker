@@ -8,8 +8,8 @@ et ce projet adhère à [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ## [1.0.3] - 2025-09-28
 
 ### 🔧 Corrections
-- **📦 Dépendances optimisées** : `@jest/globals` déplacé vers devDependencies
- - **🧹 Scripts nettoyés** : suppression temporaire des scripts instables (`test:jest`, `test:batch`, `lint`, `lint:fix`) pour correction ultérieure. Ils seront réintroduits dans une version ultérieure mieux stabilisée.
+- **Dépendances** : `@jest/globals` déplacé vers devDependencies
+ - **Scripts nettoyés** : suppression temporaire des scripts instables (`test:jest`, `test:batch`, `lint`, `lint:fix`) pour correction ultérieure. Ils seront réintroduits dans une version ultérieure mieux stabilisée.
 
 ---
 ## [1.0.2] - 2025-09-27
