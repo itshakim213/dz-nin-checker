@@ -5,7 +5,21 @@ Toutes les modifications notables de ce projet seront documentées dans ce fichi
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère à [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.1] - 2025-01-27
+## [1.0.3] - 2025-09-28
+
+### 🔧 Corrections
+- **📦 Dépendances optimisées** : `@jest/globals` déplacé vers devDependencies
+ - **🧹 Scripts nettoyés** : suppression temporaire des scripts instables (`test:jest`, `test:batch`, `lint`, `lint:fix`) pour correction ultérieure. Ils seront réintroduits dans une version ultérieure mieux stabilisée.
+
+---
+## [1.0.2] - 2025-09-27
+
+### 🔧 Corrections
+- **🔗 URLs GitHub corrigées** : `itshakim213` dans package.json, README.md et CONTRIBUTING.md
+
+---
+
+## [1.0.1] - 2025-09-27
 
 ### 🔧 Améliorations
 - **📅 Logique d'année corrigée** : 
