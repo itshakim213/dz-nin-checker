@@ -8,19 +8,19 @@
 
 **Le validateur le plus complet et précis pour les Numéros d'Identification Nationale (NIN) algériens !** 
 
-Développé avec l'algorithme Luhn modifié, ce package offre une validation ultra-robuste, une interface interactive intuitive, et des fonctionnalités avancées pour tous vos besoins de validation d'identité algérienne.
+Développé avec l'algorithme Luhn modifié, ce package offre une validation ultra-robuste, une interface interactive, et des fonctionnalités pour vos besoins de validation d'identité algérienne.
 
 ## 🚀 Fonctionnalités
 
-### 🎯 **Interface Interactive Révolutionnaire**
-- 🖥️ **Menu interactif complet** avec 6 options avancées
-- 🔍 **Validation en temps réel** avec feedback visuel immédiat
+### 🎯 **Interface Interactive**
+- 🖥️ **Menu interactif** avec 6 options
+- 🔍 **Validation en temps réel** avec feedback immédiat
 - 📊 **Analyse détaillée** avec décomposition complète du NIN
-- 🧮 **Mode debug avancé** montrant chaque étape du calcul Luhn
+- 🧮 **Mode debug** montrant chaque étape du calcul Luhn
 - 📦 **Validation en lot** pour traiter des centaines de NINs
 - 🎲 **Générateur de NINs** pour tests et développement
 
-### ⚡ **Validation Ultra-Robuste**
+### ⚡ **Validation Robuste**
 - ✅ **Validation complète** des NINs algériens (18 chiffres)
 - 🧮 **Algorithme Luhn modifié** pour une précision maximale
 - 📊 **Extraction intelligente** (nationalité, sexe, année, commune, etc.)
@@ -113,7 +113,7 @@ pnpm add dz-nin-checker
 ### Import
 
 ```typescript
-// ES6 Modules
+// ES6+ Modules
 import { validateNIN, generateValidNIN, debugNIN } from 'dz-nin-checker';
 
 // CommonJS
